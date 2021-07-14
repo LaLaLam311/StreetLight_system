@@ -90,7 +90,7 @@ function onMessageArrived(message) {
 		exports = factory();
 	} else {
 		//if (typeof root.Paho === "undefined"){
-		//	root.Paho = {};
+		//	root.Paho = {};g
 		//}
 		root.Paho = factory();
 	}
@@ -100,7 +100,7 @@ function onMessageArrived(message) {
 	var PahoMQTT = (function (global) {
 
 	// Private variables below, these are only visible inside the function closure
-	// which is used to define the module.
+	// which is used to define the module.sss
 	var version = "@VERSION@-@BUILDLEVEL@";
 
 	/**
