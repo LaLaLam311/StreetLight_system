@@ -3,7 +3,8 @@ var mqtt_server = "broker.mqttdashboard.com";
 
 mqtt_server = document.getElementById("mqtt_server").value;
 mqtt_port = Number(document.getElementById("mqtt_port").value);
-
+window.addEventListener('load', sub_mqtt_msg1);
+window.addEventListener('load', sub_mqtt_msg2);
 
 function send_mqtt_msg1() {
         client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
@@ -30,7 +31,6 @@ function onConnect1(){
     // document.getElementById("submsg1").innerHTML = "Trying to connect...";
     // setTimeout(sub_mqtt_msg1, "5000");
 function sub_mqtt_msg1() {
-
         client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
         client.onMessageArrived = onMessageArrived1;
         client.connect({onSuccess:onConnect11});

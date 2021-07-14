@@ -76,7 +76,7 @@ function onMessageArrived(message) {
   console.log("onMessageArrived:"+message.payloadString);
   client.disconnect();
 };
- * </pre></code>
+ * </pre></code>ss
  * @namespace Paho
  */
 
