@@ -1,0 +1,393 @@
+{% load static %}
+<!-- để dùng {{images}} => make static image as baseUrl .......<img src="{{baseUrl}}/{{des.img}}"-->
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8"/>
+
+  <!-- Site Title-->
+  <title>Luan Van Tot Nghiep</title>
+
+  <!-- Mobile Specific Metas-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+  <!-- Google-fonts -->
+  <link href="{% static 'http://fonts.googleapis.com/css?family=Signika+Negative:300,400,600,700' rel='stylesheet' type='text/css' %}">
+  <link href="{% static 'http://fonts.googleapis.com/css?family=Kameron:400,700' rel='stylesheet' type='text/css'%}">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css1/bootstrap.min.css' %}">
+  <!-- Fonts-style -->
+  <link rel="stylesheet" type="text/css" href="{% static 'ss1/styles.css' %}">
+  <!-- Fonts-style -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css1/font-awesome.min.css' %}">
+  <!-- Modal-Effect -->
+  <link href="{% static 'css1/component.css' %}"type="text/css" rel="stylesheet">
+  <!-- owl-carousel -->
+  <link href="{% static 'css1/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="screen">
+  <link href="{% static 'css1/owl.theme.css' %}" rel="stylesheet" type="text/css" media="screen">
+  <!-- Template Styles-->
+  <link rel="stylesheet" href="{% static 'css1/style.css' %}" type="text/css">
+  <!-- Template Color-->
+  <link rel="stylesheet" type="text/css" href="{% static 'css1/green.css' %}" media="screen" id="color-opt" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'csss/lighting1.css' %}">
+
+
+</head>
+
+<body data-spy="scroll" data-offset="80">
+
+  <!-- Preloader -->
+  <div class="animationload">
+    <div class="loader">
+        Chờ chúc....
+    </div>
+  </div> 
+  <!-- End Preloader -->
+
+
+  <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <!-- <span class="sr-only">Toggle n avigation</span> -->
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" >Graduation Thesis</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="home">Name: Tran Phu </a></li>
+          <li><a href="{% static '#{{services}}' %}">MSSV: 1712652 </a></li>
+          <li><a href="base">Class: DD17TĐ03</a></li>
+          <li><a href="contact"> contact</a></li>
+          <li><a href="old"> old</a></li>
+
+          <li><a href="{% static '#contact' %}"></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+
+    <!-- /HOME -->
+    <section class="main-home" id="home">
+      <div class="home-page-photo"><img src="" alt=""></div> <!-- Background image -->
+      <div class="home__header-content">
+        <div id="main-home-carousel" class="owl-carousel">
+          <div>
+            <h1 class="intro-title" style="font-size:600%;"> Street light system using LoRaWan communication </h1>
+          </div><!--slide item like paragraph-->
+
+          <div>
+            <h1 class="intro-title">Tổng quan về đề tài</h1>
+            <p class="intro-text">. Chiếu sáng đường phố hiện là một phần cốt lõi của cơ sở hạ tầng đô thị và nông thôn, tạo ra một môi trường chiếu sáng an toàn cho người đi bộ và tham gia giao thông. <br/> Đề tài này sẽ mô phỏng chế độ và hoạt động của đèn </p>
+            <a class="btn btn-custom" href="#">Nhấp để xem mô hình toàn diện</a>
+          </div>
+          <!--slide item like paragraph-->
+        </div>
+      </div>
+    </section>
+    <!-- /End HOME -->
+
+    <!-- / SERVICES -->
+    <section id="#{{services}}">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="title text-center">Street Light System</h3>
+            <div class="center">
+              Server Name: <input type="text" id="mqtt_server" value="broker.mqttdashboard.com"><br><br>
+              Websocket: <input type="text" id="mqtt_port" value="8000"><br><br>
+              <p>Mode :  M0: Allow direct control  ;  M1: Lighting 50%  ;  M2: Lighting 100%  ;  M3: Lighting 80%   ;  M4: Dimming </p>
+              Mode: <input type="text" id="mode" value=""><br><br>              
+              <button onclick="send_mqtt_msg()">Publishing_ALL</button>
+              <button onclick="sub_mqtt_msg()">Subcribing_ALL</button>
+            </div>
+            <div class="titleHR"><span></span></div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-4"> <!-- Node -->
+            <div class="text-center services-item">
+              <div class="col-wrapper">
+                <h3>Node 1</h3>
+                <img src="{% static 'images1/den.JPG' %}" alt="">
+                <h5><input type="range" min="0" max="100" id="mqtt_msg1" oninput="max1.value = this.value" /></h5>
+                <p>Light % : <input type="number" onkeyup="mqtt_msg1.value=this.value" oninput="show.value = this.value" id ="max1" min="0" max = "100"/></p>
+                <button onclick=" send_mqtt_msg1() ">Publishing_1</button><hr>
+                <h3>Sensor % : <textarea name=""  id="sensor1" cols="2" rows="1"></textarea></h3>
+                <!-- <h1 id="button1"></h1> -->
+                <h3>Mode: <textarea name=""  id="register1" cols="2" rows="1"></textarea></h3>
+                <h3>Message arrive at : <textarea name=""  id="ntp1" cols="6" rows="1"></textarea> </h3>
+                <button onclick="sub_mqtt_msg1()">Subscribe_1</button>  
+                <button onclick="CheckButton_1()">Check_1</button>
+
+                <div id="checkbutton1"></div>            
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4"> <!-- Service-item -->
+            <div class="text-center services-item">
+              <div class="col-wrapper">
+                <h3>Node 2</h3>
+                <img src="{% static 'images1/den.JPG' %}" alt="">
+                <h5><input type="range" min="0" max="100" id="mqtt_msg2" oninput="max2.value = this.value"/></h5>
+                <p>Light % : <input type="number" onkeyup="mqtt_msg2.value=this.value" id ="max2" min="0" max = "100"/></p>
+                <button onclick=" send_mqtt_msg2() ">Publishing_2</button><hr>
+                <h3>Sensor % : <textarea name=""  id="sensor2" cols="2" rows="1"></textarea></h3>
+                <!-- <h1 id="button1"></h1> -->
+                <h3>Mode: <textarea name=""  id="register2" cols="2" rows="1"></textarea></h3>
+                <h3>Message arrive at : <textarea name=""  id="ntp2" cols="6" rows="1"></textarea> </h3>
+                <button onclick="sub_mqtt_msg2()">Subscribe_2</button>
+                <button onclick="CheckButton_2()">Check_2</button>    
+                <div id="checkbutton2"></div>                 
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4"> <!-- Service-item -->
+            <div class="text-center services-item">
+              <div class="col-wrapper">
+                <h3>Node 3</h3>
+                <img src="{% static 'images1/den.JPG' %}" alt="">
+                <h5><input type="range" min="0" max="100" id="mqtt_msg3" oninput="max3.value = this.value"/></h5>
+                <p>Light % : <input type="number" onkeyup="mqtt_msg3.value=this.value" id ="max3" min="0" max = "100"/></p>
+                <button onclick=" send_mqtt_msg3() ">Publishing_3</button><hr>
+                <h3>Sensor % : <textarea name=""  id="sensor3" cols="2" rows="1"></textarea></h3>
+                <!-- <h1 id="button1"></h1> -->
+                <h3>Mode: <textarea name=""  id="register3" cols="2" rows="1"></textarea></h3>
+                <h3>Message arrive at : <textarea name=""  id="ntp3" cols="6" rows="1"></textarea> </h3>
+                <button onclick="sub_mqtt_msg3()">Subscribe_3</button>
+                <button onclick="CheckButton_3()">Check_3</button> 
+              </div>
+            </div>
+          </div>
+        </div> <!--/.row -->
+
+        <div class="row">
+          <div class="col-sm-4"> <!-- Service-item -->
+            <div class="text-center services-item">
+              <div class="col-wrapper">
+                <div class="icon-border"> 
+                  <i class="icon-settings-streamline-2 color-l-purple"></i> 
+                </div>
+                <h5>Light 1 config</h5>
+                 Topic_1_pub: <input type="text" id="mqtt_destname1" value="lora1/commands"><br><br>
+                 Topic_1_sub: <input type="text" id="mqtt_subname1" value="lora1/measures"><br><br>
+
+                 <!-- Message_1: <input type="text" id="mqtt_msg1" value=""><br><br> -->
+                <div id="pubmsg1"></div>  
+                <div id="submsg1"></div>  
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4"> <!-- Service-item -->
+            <div class="text-center services-item">
+              <div class="col-wrapper">
+                <div class="icon-border"> 
+                  <i class="icon-streamline-umbrella-weather color-l-pink"></i> 
+                </div>
+                <h5>Light 2 config</h5>              
+                Topic_2_pub: <input type="text" id="mqtt_destname2" value="lora2/commands"><br><br>
+                Topic_2_sub: <input type="text" id="mqtt_subname2" value="lora2/measures"><br><br>
+                <!-- Message_2: <input type="text" id="mqtt_msg2" value=""><br><br> -->
+                <div id="pubmsg2"></div>    
+                <div id="submsg2"></div>              
+          
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4"> <!-- Service-item -->
+            <div class="text-center services-item">
+              <div class="col-wrapper">
+                <div class="icon-border"> 
+                  <i class="icon-caddie-shopping-streamline color-l-green"></i> 
+                </div>
+                <h5>Light 3 config</h5>
+                Topic_3_pub: <input type="text" id="mqtt_destname3" value="lora3/commands"><br><br>
+                Topic_3sub: <input type="text" id="mqtt_subname3" value="lora3/measures"><br><br>
+                <!-- Message_1: <input type="text" id="mqtt_msg1" value=""><br><br> -->
+               <div id="pubmsg3"></div>  
+               <div id="submsg3"></div>                  
+              </div>
+            </div>
+          </div>
+        </div> <!--/.row -->
+      </div> /.container
+    </section>
+    <!-- / End services-->
+
+
+    <!-- TWITTER TWEET -->
+    <section class="twitter_tweet parallax" id="twitter_tweet" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 text-center">
+            <div id="testi-carousel" class="owl-carousel owl-spaced">
+              <div>
+                <i class="fa fa-twitter"></i>
+                <h2> Hệ thống chiếu sáng thông minh giúp giảm thiểu năng lượng tiêu thụ, thân thiện môi trường và tiết kiệm chi phí
+                </h2>
+                <p>- Trần Phú</p>
+              </div><!--testimonials item like paragraph-->
+              <div>
+                <i class="fa fa-twitter"></i>
+                <h2>
+                  Hệ thống chiếu sáng thông minh là nền tàng để xây dựng Smart-city
+                </h2>
+                <p>- Trần Phú</p>
+              </div><!--testimonials item like paragraph-->
+              <div>
+                <i class="fa fa-twitter"></i>
+                <h2>
+                  =))))))
+                </h2>
+                <p>- Trần Phú</p>
+              </div><!--testimonials item like paragraph-->
+            </div>
+          </div> <!-- end col-md-8 -->
+        </div> <!-- end row -->
+      </div> <!-- container -->
+    </section>
+    <!-- End TWITTER TWEET -->
+
+    <!-- CONTACT -->
+    <!-- <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="title text-center">Contact Us</h3>
+            <div class="titleHR"><span></span></div>
+
+            <form role="form" name="ajax-form" id="ajax-form" action="php/contact.php" method="post" class="form-main">
+              <div class="col-xs-12">
+                <div class="row">            
+                  <div class="form-group col-xs-6">
+                    <label for="name2">Name</label>
+                    <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name">
+                    <div class="error" id="err-name" style="display: none;">Please enter name</div>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label for="email2">Email</label>
+                    <input class="form-control" id="email2" name="email" type="text" onfocus="if(this.value == 'E-mail') this.value='';" onblur="if(this.value == '') this.value='E-mail';" value="E-mail">
+                    <div class="error" id="err-emailvld" style="display: none;">E-mail is not a valid format</div> 
+                  </div>
+                </div>
+                <div class="row">            
+                  <div class="form-group col-xs-12">
+                    <label for="message2">Message</label>
+                    <textarea class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea>
+                    <div class="error" id="err-message" style="display: none;">Please enter message</div>
+                  </div>
+                </div> 
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <p class="text-center con_sub_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren.</p>
+                  </div>
+                </div>
+                <div class="row">            
+                  <div class="col-xs-12 text-center">
+                    <div id="ajaxsuccess">E-mail was successfully sent.</div>
+                    <div class="error" id="err-form" style="display: none;">There was a problem validating the form please check!</div>
+                    <div class="error" id="err-timedout">The connection to the server timed out!</div>
+                    <div class="error" id="err-state"></div>
+                    <button type="submit" class="btn btn-custom" id="send">Submit</button>
+                  </div>
+                </div>
+              </div>  
+            </form>
+          </div> 
+        </div> 
+      </div> 
+    </section> -->
+    <!-- End CONTACT -->
+
+    <!-- FOOTER begings -->
+
+    <!-- End footer begings -->
+
+
+    <!-- Scroll top -->
+    <a href="#" class="back-to-top"> <i class="fa fa-chevron-up"> </i> </a>
+
+
+    <!-- Style switcher -->
+    <div id="style-switcher" style="left: 0px;">
+        <div>
+            <h3>Select your color</h3>
+            <ul class="pattern">
+                <li><a class="color1" href="#"></a></li>
+                <li><a class="color2" href="#"></a></li>
+                <li><a class="color3" href="#"></a></li>
+                <li><a class="color4" href="#"></a></li>
+                <li><a class="color5" href="#"></a></li>
+                <li><a class="color6" href="#"></a></li>
+                <li><a class="color7" href="#"></a></li>
+                <li><a class="color8" href="#"></a></li>
+                <li><a class="color9" href="#"></a></li>
+                <li><a class="color10" href="#"></a></li>
+                <li><a class="color11" href="#"></a></li>
+                <li><a class="color12" href="#"></a></li>
+            </ul>
+        </div>      
+        <div class="bottom">
+            <a href="#" class="settings"><i class="fa fa-refresh fa-spin"></i></a>
+        </div>
+    </div>
+    <!-- end Style switcher --> 
+
+    <script>
+      function myFunction(){
+        var num = document.getElementById("rangeInput2").value
+        document.getElementById("publish").innerHTML = num;
+      }
+      var ClientID = "ClientID_" + parseInt(Math.random()*100);
+      var client = new Paho.MQTT.Client(hostname, Number(port), ClientID);
+    </script>
+    <script src="{% static 'js1/mqtt.js' %}"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+    <!-- JavaScript
+     ================================================== -->
+     <!-- Placed at the end of the document so the pages load faster -->
+     <!-- initialize jQuery Library -->
+     <script src="{% static 'js1/jquery.min.js' %}"></script>
+     <!-- jquery easing -->
+     <script src="{% static 'js1/jquery.easing.min.js' %}"></script>
+     <!-- Bootstrap -->
+     <script src="{% static 'js1/bootstrap.min.js' %}"></script>
+     <!-- modal-effect -->
+     <script src="{% static 'js1/classie.js' %}"></script>
+     <script src="{% static 'js1/modalEffects.js' %}"></script>
+     <!-- Counter-up -->
+     <script src="{% static 'js1/waypoints.min.js' %}" type="text/javascript"></script>
+     <script src="{% static 'js1/jquery.counterup.min.js' %}" type="text/javascript"></script>
+     <!-- SmoothScroll -->
+     <script src="{% static 'js1/SmoothScroll.js' %}"></script>
+     <!-- Parallax -->
+     <script src="{% static 'js1/jquery.stellar.min.js' %}"></script>
+     <!-- Jquery-Nav -->
+     <script src="{% static 'js1/jquery.nav.js' %}"></script>
+     <!-- Owl carousel -->                                                      
+     <script type="text/javascript" src="{% static 'js1/owl.carousel.min.js' %}"></script>
+     <!-- App JS -->
+     <script src="{% static 'js1/app.js' %}"></script>
+
+     <!-- Switcher script for demo only -->
+    <script type="text/javascript" src="{% static 'js1/switcher.js' %}"></script>
+
+
+  </body>
+</html>

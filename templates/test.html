@@ -1,0 +1,173 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Luan Van Tot Nghiep</title>
+
+  <!-- Mobile Specific Metas-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+  <!-- Google-fonts -->
+  <link href="{% static 'http://fonts.googleapis.com/css?family=Signika+Negative:300,400,600,700' rel='stylesheet' type='text/css' %}">
+  <link href="{% static 'http://fonts.googleapis.com/css?family=Kameron:400,700' rel='stylesheet' type='text/css'%}">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css1/bootstrap.min.css' %}">
+  <!-- Fonts-style -->
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'ss1/styles.css' %}"> -->
+  <!-- Fonts-style -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css1/font-awesome.min.css' %}">
+  <!-- Modal-Effect -->
+  <link href="{% static 'css1/component.css' %}"type="text/css" rel="stylesheet">
+  <!-- owl-carousel -->
+  <link href="{% static 'css1/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="screen">
+  <link href="{% static 'css1/owl.theme.css' %}" rel="stylesheet" type="text/css" media="screen">
+  <!-- Template Styles-->
+  <link rel="stylesheet" href="{% static 'css1/style.css' %}" type="text/css">
+  <!-- Template Color-->
+  <link rel="stylesheet" type="text/css" href="{% static 'css1/green.css' %}" media="screen" id="color-opt" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'csss/lighting1.css' %}">
+
+
+</head>
+
+<body data-spy="scroll" data-offset="80">
+
+  <!-- Preloader -->
+  <!-- <div class="animationload">
+    <div class="loader">
+        Chờ chúc....
+    </div>
+  </div>  -->
+  <!-- End Preloader -->
+
+
+  <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href='' >Graduation Thesis</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="home">Name: Tran Phu </a></li>
+          <li><a href="lights">lights </a></li>
+          <li><a href="cabinets">cabinets</a></li>
+          <li><a href="contact"> contact</a></li>
+          <li><a href="old"> old</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+
+    <!-- /HOME -->
+    <section class="main-home" id="home">
+      <div class="home-page-photo"><img src="" alt=""></div> <!-- Background image -->
+      <div class="home__header-content">
+        <div id="main-home-carousel" class="owl-carousel">
+          <div>
+            <h1 class="intro-title" style="font-size:600%;"> Street light system using LoRaWan communication </h1>
+          </div><!--slide item like paragraph-->
+
+          <div>
+            <h1 class="intro-title">Tổng quan về đề tài</h1>
+            <p class="intro-text">. Chiếu sáng đường phố hiện là một phần cốt lõi của cơ sở hạ tầng đô thị và nông thôn, tạo ra một môi trường chiếu sáng an toàn cho người đi bộ và tham gia giao thông. <br/> Đề tài này sẽ mô phỏng chế độ và hoạt động của đèn </p>
+            <a class="btn btn-custom" href="#">Nhấp để xem mô hình toàn diện</a>
+          </div>
+          <!--slide item like paragraph-->
+        </div>
+      </div>
+    </section>
+    <!-- /End HOME -->
+
+    <!-- / SERVICES -->
+        {% block content %}
+
+        {% endblock %}   
+    <!-- / End services-->
+
+
+    <!-- TWITTER TWEET -->
+    <section class="twitter_tweet parallax" id="twitter_tweet" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 text-center">
+            <div id="testi-carousel" class="owl-carousel owl-spaced">
+              <div>
+                <i class="fa fa-twitter"></i>
+                <h2> Hệ thống chiếu sáng thông minh giúp giảm thiểu năng lượng tiêu thụ, thân thiện môi trường và tiết kiệm chi phí
+                </h2>
+                <p>- Trần Phú</p>
+              </div><!--testimonials item like paragraph-->
+              <div>
+                <i class="fa fa-twitter"></i>
+                <h2>
+                  Hệ thống chiếu sáng thông minh là nền tàng để xây dựng Smart-city
+                </h2>
+                <p>- Trần Phú</p>
+              </div><!--testimonials item like paragraph-->
+              <div>
+                <i class="fa fa-twitter"></i>
+                <h2>
+                  =))))))
+                </h2>
+                <p>- Trần Phú</p>
+              </div><!--testimonials item like paragraph-->
+            </div>
+          </div> <!-- end col-md-8 -->
+        </div> <!-- end row -->
+      </div> <!-- container -->
+    </section>
+
+    <!-- Scroll top -->
+    <a href="#" class="back-to-top"> <i class="fa fa-chevron-up"> </i> </a>
+
+
+    <!-- Style switcher -->
+
+    <!-- end Style switcher --> 
+
+    <script>
+      function myFunction(){
+        var num = document.getElementById("rangeInput2").value
+        document.getElementById("publish").innerHTML = num;
+      }
+    </script>
+    <script src="{% static 'js1/mqtt.js' %}"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+    <!-- JavaScript
+     ================================================== -->
+     <!-- Placed at the end of the document so the pages load faster -->
+     <!-- initialize jQuery Library -->
+     <script src="{% static 'js1/jquery.min.js' %}"></script>
+     <!-- jquery easing -->
+     <script src="{% static 'js1/jquery.easing.min.js' %}"></script>
+     <!-- Bootstrap -->
+     <script src="{% static 'js1/bootstrap.min.js' %}"></script>
+     <!-- modal-effect -->
+     <script src="{% static 'js1/classie.js' %}"></script>
+     <script src="{% static 'js1/modalEffects.js' %}"></script>
+     <!-- Counter-up -->
+     <script src="{% static 'js1/waypoints.min.js' %}" type="text/javascript"></script>
+     <script src="{% static 'js1/jquery.counterup.min.js' %}" type="text/javascript"></script>
+     <!-- SmoothScroll -->
+     <script src="{% static 'js1/SmoothScroll.js' %}"></script>
+     <!-- Parallax -->
+     <script src="{% static 'js1/jquery.stellar.min.js' %}"></script>
+     <!-- Jquery-Nav -->
+     <script src="{% static 'js1/jquery.nav.js' %}"></script>
+     <!-- Owl carousel -->                                                      
+     <script type="text/javascript" src="{% static 'js1/owl.carousel.min.js' %}"></script>
+     <!-- App JS -->
+     <script src="{% static 'js1/app.js' %}"></script>
+
+     <!-- Switcher script for demo only -->
+    <script type="text/javascript" src="{% static 'js1/switcher.js' %}"></script>
+
+
+  </body>
+</html>

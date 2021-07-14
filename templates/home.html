@@ -1,0 +1,136 @@
+{% extends 'test.html' %}
+{% load static %}
+{% static "images" as baseUrl %}
+{% block content %}
+<section id="#{{services}}">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="title text-center">Street Light System</h3>
+          <div class="center">
+            Server Name: <input type="text" id="mqtt_server" value="broker.mqttdashboard.com"><br><br>
+            Websocket: <input type="text" id="mqtt_port" value="8000"><br><br>
+            <p>Mode :  M0: Allow direct control  ;  M1: Lighting 50%  ;  M2: Lighting 100%  ;  M3: Lighting 80%   ;  M4: Dimming </p>
+            Mode: <input type="text" id="mode" value=""><br><br>              
+            <button onclick="send_mqtt_msg()">Publishing_ALL</button>
+            <button onclick="sub_mqtt_msg()">Subcribing_ALL</button>
+          </div>
+          <div class="titleHR"><span></span></div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-4"> <!-- Node -->
+          <div class="text-center services-item">
+            <div class="col-wrapper">
+              <h3>Node 1</h3>
+              <img src="{% static 'images1/den.JPG' %}" alt="">
+              <h5><input type="range" min="0" max="100" id="mqtt_msg1" oninput="max1.value = this.value" /></h5>
+              <p>Light % : <input type="number" onkeyup="mqtt_msg1.value=this.value" oninput="show.value = this.value" id ="max1" min="0" max = "100"/></p>
+              <button onclick=" send_mqtt_msg1() ">Publishing_1</button><hr>
+              <h3>Sensor % : <textarea name=""  id="sensor1" cols="2" rows="1"></textarea></h3>
+              <!-- <h1 id="button1"></h1> -->
+              <h3>Mode: <textarea name=""  id="register1" cols="2" rows="1"></textarea></h3>
+              <h3>Message arrive at : <textarea name=""  id="ntp1" cols="6" rows="1"></textarea> </h3>
+              <button onclick="sub_mqtt_msg1()">Subscribe_1</button>  
+              <button onclick="CheckButton_1()">Check_1</button>
+
+              <div id="checkbutton1"></div>            
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4"> <!-- Service-item -->
+          <div class="text-center services-item">
+            <div class="col-wrapper">
+              <h3>Node 2</h3>
+              <img src="{% static 'images1/den.JPG' %}" alt="">
+              <h5><input type="range" min="0" max="100" id="mqtt_msg2" oninput="max2.value = this.value"/></h5>
+              <p>Light % : <input type="number" onkeyup="mqtt_msg2.value=this.value" id ="max2" min="0" max = "100"/></p>
+              <button onclick=" send_mqtt_msg2() ">Publishing_2</button><hr>
+              <h3>Sensor % : <textarea name=""  id="sensor2" cols="2" rows="1"></textarea></h3>
+              <!-- <h1 id="button1"></h1> -->
+              <h3>Mode: <textarea name=""  id="register2" cols="2" rows="1"></textarea></h3>
+              <h3>Message arrive at : <textarea name=""  id="ntp2" cols="6" rows="1"></textarea> </h3>
+              <button onclick="sub_mqtt_msg2()">Subscribe_2</button>
+              <button onclick="CheckButton_2()">Check_2</button>    
+              <div id="checkbutton2"></div>                 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4"> <!-- Service-item -->
+          <div class="text-center services-item">
+            <div class="col-wrapper">
+              <h3>Node 3</h3>
+              <img src="{% static 'images1/den.JPG' %}" alt="">
+              <h5><input type="range" min="0" max="100" id="mqtt_msg3" oninput="max3.value = this.value"/></h5>
+              <p>Light % : <input type="number" onkeyup="mqtt_msg3.value=this.value" id ="max3" min="0" max = "100"/></p>
+              <button onclick=" send_mqtt_msg3() ">Publishing_3</button><hr>
+              <h3>Sensor % : <textarea name=""  id="sensor3" cols="2" rows="1"></textarea></h3>
+              <!-- <h1 id="button1"></h1> -->
+              <h3>Mode: <textarea name=""  id="register3" cols="2" rows="1"></textarea></h3>
+              <h3>Message arrive at : <textarea name=""  id="ntp3" cols="6" rows="1"></textarea> </h3>
+              <button onclick="sub_mqtt_msg3()">Subscribe_3</button>
+              <button onclick="CheckButton_3()">Check_3</button> 
+            </div>
+          </div>
+        </div>
+      </div> <!--/.row -->
+
+      <div class="row">
+        <div class="col-sm-4"> <!-- Service-item -->
+          <div class="text-center services-item">
+            <div class="col-wrapper">
+              <div class="icon-border"> 
+                <i class="icon-settings-streamline-2 color-l-purple"></i> 
+              </div>
+              <h5>Light 1 config</h5>
+               Topic_1_pub: <input type="text" id="mqtt_destname1" value="lora1/commands"><br><br>
+               Topic_1_sub: <input type="text" id="mqtt_subname1" value="lora1/measures"><br><br>
+
+               <!-- Message_1: <input type="text" id="mqtt_msg1" value=""><br><br> -->
+              <div id="pubmsg1"></div>  
+              <div id="submsg1"></div>  
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4"> <!-- Service-item -->
+          <div class="text-center services-item">
+            <div class="col-wrapper">
+              <div class="icon-border"> 
+                <i class="icon-streamline-umbrella-weather color-l-pink"></i> 
+              </div>
+              <h5>Light 2 config</h5>              
+              Topic_2_pub: <input type="text" id="mqtt_destname2" value="lora2/commands"><br><br>
+              Topic_2_sub: <input type="text" id="mqtt_subname2" value="lora2/measures"><br><br>
+              <!-- Message_2: <input type="text" id="mqtt_msg2" value=""><br><br> -->
+              <div id="pubmsg2"></div>    
+              <div id="submsg2"></div>              
+        
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4"> <!-- Service-item -->
+          <div class="text-center services-item">
+            <div class="col-wrapper">
+              <div class="icon-border"> 
+                <i class="icon-caddie-shopping-streamline color-l-green"></i> 
+              </div>
+              <h5>Light 3 config</h5>
+              Topic_3_pub: <input type="text" id="mqtt_destname3" value="lora3/commands"><br><br>
+              Topic_3sub: <input type="text" id="mqtt_subname3" value="lora3/measures"><br><br>
+              <!-- Message_1: <input type="text" id="mqtt_msg1" value=""><br><br> -->
+             <div id="pubmsg3"></div>  
+             <div id="submsg3"></div>                  
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div> 
+  </section>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+.lighting
+{
+    /* display: inline-block; */
+    background-color: salmon;
+    color: gold;
+    margin-top: 10px;
+    width: 500px;
+	height: 100px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 500px;
+	font-weight: 500;
+}
+.pic{
+    /* display: inline-block; */
+font-weight: 100;
+font-size: 100;
+font-family: 'Oswald', sans-serif;
+background-color: gold;
+
+    width: 50%;
+    height: 50%;
+    margin-left: 5px;
+    color: green;
+
+}

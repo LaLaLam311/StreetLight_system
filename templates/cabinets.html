@@ -1,0 +1,79 @@
+{% extends 'test.html' %}
+{% load static %}
+{% static "images" as baseUrl %}
+{% block content %}
+<section id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Street Light System</h2>
+          <div class="row">
+            <div class="col-md-8">
+              Server Name: <input type="text" id="mqtt_server" value="broker.mqttdashboard.com"><br><br>
+              Websocket: <input type="text" id="mqtt_port" value="8000"><br><br>
+              <p>Mode :  M0: Allow direct control  ;  M1: Lighting 50%  ;  M2: Lighting 100%  ;  M3: Lighting 80%   ;  M4: Dimming </p>
+              Mode: <input type="text" id="mode" value=""><br><br>              
+              <button onclick="send_mqtt_msg()">Publishing_ALL</button>
+              <button onclick="sub_mqtt_msg()">Subcribing_ALL</button>
+            </div>
+            <div class="col-md-4">
+              <h3>Time config for cabinets</h3>
+              Mode M1: <textarea name="" id="" cols="3" rows="1"></textarea> am - <textarea name="" id="" cols="3" rows="1"></textarea> am<br>
+              Mode M3: <textarea name="" id="" cols="3" rows="1"></textarea> am - <textarea name="" id="" cols="3" rows="1"></textarea> am<br>
+              Mode M2: <textarea name="" id="" cols="3" rows="1"></textarea> am - <textarea name="" id="" cols="3" rows="1"></textarea> am <br>
+              <form method="post">
+              {%csrf_token%}
+              <!-- {{form}}s -->
+              <button type="submit">submit</button>
+              </form>
+            </div>
+            </div> 
+          </div>
+          <div class="titleHR"><span></span></div>
+        </div>
+      <div class="row">
+        <div class="col-sm-6"> <!-- Node -->
+          <div class="text-center services-item">
+            <div class="col-wrapper">
+              <h3>Cabinet 1</h3>
+              <img src="{% static 'images1/cabinet.JPG' %}" alt="">
+              <button onclick=" send_mqtt_msg1() ">Publishing_1</button><hr>
+              <h3>Running Mode  : <textarea name=""  id="currentmode" cols="2" rows="1"></textarea></h3>
+              <!-- <h1 id="button1"></h1> -->
+              <div class="row">
+                <h3>Mode M1: <textarea name="" id="" cols="2" rows="1"></textarea> am - <textarea name="" id="" cols="2" rows="1"></textarea> am</h3> 
+                <h3>Mode M2: <textarea name="" id="" cols="2" rows="1"></textarea> am - <textarea name="" id="" cols="2" rows="1"></textarea> am</h3>  
+                <h3>Mode M3: <textarea name="" id="" cols="2" rows="1"></textarea> am - <textarea name="" id="" cols="2" rows="1"></textarea> am</h3>  
+
+              </div>
+              <button onclick="sub_mqtt_msg1()">Subscribe_1</button>  
+              <button onclick="CheckButton_1()">Check_1</button>
+              <div id="checkbutton1"></div>            
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6"> <!-- Service-item -->
+          <div class="text-center services-item">
+            <div class="col-wrapper">
+                <h3>Cabinet 2</h3>
+                <img src="{% static 'images1/cabinet.JPG' %}" alt="">
+                <button onclick=" send_mqtt_msg1() ">Publishing_2</button><hr>
+                <h3>Running Mode  : <textarea name=""  id="currentmode" cols="2" rows="1"></textarea></h3>
+                <!-- <h1 id="button1"></h1> -->
+                <div class="row">
+                    <h3>Mode M1: <textarea name="" id="" cols="2" rows="1"></textarea> am - <textarea name="" id="" cols="2" rows="1"></textarea> am</h3> 
+                    <h3>Mode M2: <textarea name="" id="" cols="2" rows="1"></textarea> am - <textarea name="" id="" cols="2" rows="1"></textarea> am</h3>  
+                    <h3>Mode M3: <textarea name="" id="" cols="2" rows="1"></textarea> am - <textarea name="" id="" cols="2" rows="1"></textarea> am</h3>  
+                </div>
+                <button onclick="sub_mqtt_msg1()">Subscribe_2</button>  
+                <button onclick="CheckButton_1()">Check_2</button>
+                <div id="checkbutton1"></div>                 
+            </div>
+          </div>
+        </div>
+      </div> <!--/.row -->
+    </div> 
+  </section>
+
+{% endblock %}
