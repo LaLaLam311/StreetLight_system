@@ -24,6 +24,11 @@ function onConnect1(){
         client.send(message1);
         document.getElementById("pubmsg1").innerHTML = "topic:" + mqtt_destname1 + " = " + mqtt_msg1 + " ...sent";
     } 
+    // client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
+    // client.onMessageArrived = onMessageArrived1;
+    // client.connect({onSuccess:onConnect11});
+    // document.getElementById("submsg1").innerHTML = "Trying to connect...";
+    // setTimeout(sub_mqtt_msg1, "5000");
 function sub_mqtt_msg1() {
 
         client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
@@ -63,9 +68,6 @@ function onConnect1b(){
     client.send(message1);
     document.getElementById("pubmsg1").innerHTML = "topic:" + mqtt_destname1 + " = " + mqtt_msg1 + " ...sent";   
     }
-
-
-
 function send_mqtt_msg2() {
     client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
     client.connect({onSuccess:onConnect2});
@@ -84,14 +86,14 @@ function onConnect2(){
     client.send(message2);
     document.getElementById("pubmsg2").innerHTML = "topic:" + mqtt_destname2 + " = " + mqtt_msg2 + " ...sent";
     }
-// function sub_mqtt_msg2() {
-//     // Send an MQTT message
-//       client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
-//       client.onMessageArrived = onMessageArrived2;
-//       client.connect({onSuccess:onConnect22});
-//       document.getElementById("submsg2").innerHTML = "Trying to connect...";
-//       setTimeout(sub_mqtt_msg2, "5000");
-//     }
+function sub_mqtt_msg2() {
+    // Send an MQTT message
+      client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
+      client.onMessageArrived = onMessageArrived2;
+      client.connect({onSuccess:onConnect22});
+      document.getElementById("submsg2").innerHTML = "Trying to connect...";
+      setTimeout(sub_mqtt_msg2, "5000");
+    }
 function onConnect22() {
     document.getElementById("submsg2").innerHTML = "New connection made...";
     var mqtt_subname2 = document.getElementById("mqtt_subname2").value;  

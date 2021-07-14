@@ -127,10 +127,30 @@
 
 
     <!-- Style switcher -->
+<script>
+  client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
+  client.onMessageArrived = onMessageArrived1;
+  client.connect({onSuccess:onConnect11});
+  document.getElementById("submsg1").innerHTML = "Trying to connect...";
+  setTimeout(sub_mqtt_msg1, "5000");
 
+function onConnect11() {
+document.getElementById("submsg1").innerHTML = "New connection made...";
+var mqtt_subname1 = document.getElementById("mqtt_subname1").value;  
+client.subscribe(mqtt_subname1);
+document.getElementById("submsg1").innerHTML = "Subscribing to topic: " + mqtt_subname1 + " ...";
+}
+function onMessageArrived1(message1) {
+var result1 = message1.destinationName + " : " + message1.payloadString + "";
+var obj = JSON.parse(message1.payloadString);
+document.getElementById("sensor1").innerHTML = obj.Light;
+document.getElementById("ntp1").innerHTML = obj.NTP;
+document.getElementById("register1").innerHTML = obj.Register;
+}
+</script>
     <!-- end Style switcher --> 
     <script src="{% static 'js1/mqtt.js' %}"></script>
-    <!-- <script src="{% static 'js1/paho-mqtt.js' %}"></script> -->
+    <script src="{% static 'js1/paho-mqtt.js' %}"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
     <!-- JavaScript
